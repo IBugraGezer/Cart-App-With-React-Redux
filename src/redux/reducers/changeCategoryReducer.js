@@ -8,6 +8,6 @@ export default function changeCategoryReducer(
     case actionTypes.CHANGE_CATEGORY:
       return action.payload;
     default:
-      state;
+      return state;
   }
 }
