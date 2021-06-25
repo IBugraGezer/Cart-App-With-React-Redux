@@ -2,11 +2,16 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as productActions from "../../redux/actions/productActions";
-import { Table } from "reactstrap";
+import * as cartActions from "../../redux/actions/cartActions";
+import { Table, Button } from "reactstrap";
 
 class ProductList extends Component {
   componentDidMount() {
     this.props.actions.getProducts();
+  }
+
+  addToCart(product) {
+    this.props.actions.addToCart({ product, quantity: 1 });
   }
 
   render() {
@@ -21,6 +26,7 @@ class ProductList extends Component {
               <th>Unit Price</th>
               <th>Quantity Per Unit</th>
               <th>Units In Stock</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -31,6 +37,14 @@ class ProductList extends Component {
                 <td>{product.unitPrice}</td>
                 <td>{product.quantityPerUnit}</td>
                 <td>{product.unitsInStock}</td>
+                <td>
+                  <Button
+                    onClick={() => this.addToCart(product)}
+                    color="success"
+                  >
+                    add to cart
+                  </Button>
+                </td>
               </tr>
             ))}
           </tbody>
@@ -51,6 +65,7 @@ function mapDispatchToProps(dispatch) {
   return {
     actions: {
       getProducts: bindActionCreators(productActions.getProducts, dispatch),
+      addToCart: bindActionCreators(cartActions.addToCart, dispatch),
     },
   };
 }
