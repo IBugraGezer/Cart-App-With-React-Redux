@@ -1,4 +1,5 @@
 export default {
-  currentCategory: { categoryName: "a category name" },
+  currentCategory: { categoryName: "" },
   categories: [],
+  products: [],
 };
