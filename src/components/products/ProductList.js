@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as productActions from "../../redux/actions/productActions";
 import * as cartActions from "../../redux/actions/cartActions";
+import alertify from "alertifyjs";
 import { Table, Button } from "reactstrap";
 
 class ProductList extends Component {
@@ -12,6 +13,7 @@ class ProductList extends Component {
 
   addToCart(product) {
     this.props.actions.addToCart({ product, quantity: 1 });
+    alertify.success(product.productName + "added to cart!");
   }
 
   render() {
