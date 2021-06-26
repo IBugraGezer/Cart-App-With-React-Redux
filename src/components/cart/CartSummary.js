@@ -12,6 +12,7 @@ import {
 } from "reactstrap";
 import { bindActionCreators } from "redux";
 import * as cartActions from "../../redux/actions/cartActions";
+import { Link } from "react-router-dom";
 
 class CartSummary extends Component {
   removeFromCart(cartItem) {
@@ -44,6 +45,10 @@ class CartSummary extends Component {
               ({cartItem.quantity}){cartItem.product.productName}
             </DropdownItem>
           ))}
+          <DropdownItem divider />
+          <DropdownItem>
+            <Link to={"/cart"}>Go to cart</Link>
+          </DropdownItem>
         </DropdownMenu>
       </UncontrolledDropdown>
     );

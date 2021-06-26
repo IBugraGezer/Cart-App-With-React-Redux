@@ -2,10 +2,43 @@ import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import * as cartActions from "../../redux/actions/cartActions";
+import { Table, Button } from "reactstrap";
 
 class CartDetail extends Component {
   render() {
-    return <div></div>;
+    return (
+      <div>
+        <Table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Product Name</th>
+              <th>Unit Price</th>
+              <th>Quantity</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.props.cart.map((cartItem) => (
+              <tr>
+                <td>{cartItem.product.id}</td>
+                <td>{cartItem.product.productName}</td>
+                <td>{cartItem.product.unitPrice}</td>
+                <td>{cartItem.quantity}</td>
+                <td>
+                  <Button
+                    color="danger"
+                    onClick={() => this.props.actions.removeFromCart(cartItem)}
+                  >
+                    X
+                  </Button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      </div>
+    );
   }
 }
 function mapStateToProps(state) {
